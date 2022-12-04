@@ -1,7 +1,18 @@
-import { Box, TextField } from "@mui/material";
-import React from "react";
+import { Box, Button, TextField } from "@mui/material";
+import React, { useRef, useState } from "react";
+import TypeInterface from '../model/typeInterface';
 
-const Form = () => {
+interface Prosps {
+  setTodos: TypeInterface;
+  todos: TypeInterface;
+}
+
+const Form = ({setTodos, todos}:Prosps) => {
+  const inputRef = useRef<HTMLInputElement | null>(null)
+
+  const handlesubmit = () => {
+    console.log(inputRef)
+  }
   return (
     <Box
       component="form"
@@ -11,7 +22,8 @@ const Form = () => {
       noValidate
       autoComplete="off"
     >
-      <TextField id="filled-basic" label="add your list" variant="filled" />
+      <input className="input" ref={inputRef} type="text" />
+      <Button onClick={() => handlesubmit} variant="contained">Contained</Button>
     </Box>
   );
 };
